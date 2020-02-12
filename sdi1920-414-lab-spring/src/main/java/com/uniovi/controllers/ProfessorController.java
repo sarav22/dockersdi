@@ -30,6 +30,11 @@ public class ProfessorController {
 		professorService.addProfessor(professor);
 		return "added";
 	}
+	
+	@RequestMapping(value ="/professor/add")
+	public String getProfessor() {
+		return "professor/add";
+	}
 
 
 	@RequestMapping("/professor/details/{dni}")
