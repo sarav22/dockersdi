@@ -15,29 +15,32 @@
 	<!-- Barra de Navegación superior -->
 	<nav th:replace="fragments/nav" />
 	<div class="container">
-		<h2>Notas</h2>
-		<p>Las notas que actualmente figuran en el sistema son las
+		<h2>Profesores</h2>
+		<p>Los profesores que actualmente figuran en el sistema son las
 			siguientes:</p>
 		<div class="table-responsive">
 			<table class="table table-hover">
 				<thead>
 					<tr>
 						<th class="col-md-1">id</th>
-						<th>Descripción</th>
-						<th>Puntuación</th>
+						<th>Dni</th>
+						<th>Nombre</th>
+						<th>Apellido</th>
+						<th>Categoría</th>
 						<th class="col-md-1"></th>
 						<th class="col-md-1"></th>
 						<th class="col-md-1"></th>
 					</tr>
 				</thead>
 				<tbody>
-					<tr th:each="mark : ${markList}">
-						<td th:text="${mark.id}">1</td>
-						<td th:text="${mark.description}">Ejercicio 1</td>
-						<td th:text="${mark.score}">10</td>
-						<td><a th:href="${'/mark/details/' + mark.id}">detalles</a></td>
-						<td><a th:href="${'/mark/edit/' + mark.id}">modificar</a></td>
-						<td><a th:href="${'/mark/delete/' + mark.id}">eliminar</a></td>
+					<tr th:each="professor : ${professorList}">
+						<td th:text="${professor.dni}">1</td>
+						<td th:text="${professor.name}"></td>
+						<td th:text="${professor.surname}"></td>
+						<td th:text="${professor.category}"></td>
+						<td><a th:href="${'/professor/details/' + professor.dni}">detalles</a></td>
+						<td><a th:href="${'/professor/edit/' + professor.dni}">modificar</a></td>
+						<td><a th:href="${'/professor/delete/' + professor.dni}">eliminar</a></td>
 					</tr>
 				</tbody>
 			</table>
