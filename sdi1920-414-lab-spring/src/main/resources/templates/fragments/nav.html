@@ -13,21 +13,21 @@
 			<ul class="nav navbar-nav">
 				<li><a href="/">Home</a></li>
 				<li id= "marks-menu" class="dropdown">
-					<a class="dropdown-toggle" data-toggle="dropdown" href="#">Gestión de notas <span class="caret"></span></a>
+					<a class="dropdown-toggle" data-toggle="dropdown" href="#" th:text="#{managemarks.message}">Gestión de notas <span class="caret"></span></a>
 					<ul class="dropdown-menu">
-						<li><a href="/mark/add">Agregar Nota</a><li>
-						<li><a href="/mark/list">Ver Nota</a><li>
+						<li><a href="/mark/add" th:text="#{addmark.message}">Agregar Nota</a><li>
+						<li><a href="/mark/list" th:text="#{listmarks.message}">Ver Nota</a><li>
 					</ul>
 				</li>
 				<li id= "users-menu" class="dropdown">
-					<a class="dropdown-toggle" data-toggle="dropdown" href="#">Gestión de Usuarios <span class="caret"></span></a>
+					<a class="dropdown-toggle" data-toggle="dropdown" href="#" th:text="#{manageusers.message}">Gestión de Usuarios <span class="caret"></span></a>
 					<ul class="dropdown-menu">
-						<li><a href="/user/add">Agregar usuario</a><li>
-						<li><a href="/user/list">Ver Usuarios</a><li>
+						<li><a href="/user/add" th:text="#{adduser.message}">Agregar usuario</a><li>
+						<li><a href="/user/list" th:text="#{listusers.message}">Ver Usuarios</a><li>
 					</ul>
 				</li>
-				<li><a href="/professor/list">Ver Profesores</a></li>
-				<li class="active"><a href="/professor/add">Agregar
+				<li><a href="/professor/list"  th:text="#{listprofessors.message}">Ver Profesores</a></li>
+				<li class="active"><a href="/professor/add" th:text="#{addprofessor.message}" >Agregar
 						profesor</a></li>
 			</ul>
 			<ul class="nav navbar-nav navbar-right">
@@ -46,6 +46,11 @@
 								th:src="@{/img/if_spain_flag.png}"
 								style="border: 0; float: left; margin-right: 15px" /> <span
 								th:text="#{language.es}">Español</span>
+						</a></li>
+						<li><a id="btnGerman" value="DE"> <img
+								th:src="@{/img/iconfinder_de_4604.png}"
+								style="border: 0; float: left; margin-right: 15px" /> <span
+								th:text="#{language.de}">Alemán</span>
 						</a></li>
 					</ul></li>
 				<li><a href="/signup" th:text="#{signup.message}"> <span
