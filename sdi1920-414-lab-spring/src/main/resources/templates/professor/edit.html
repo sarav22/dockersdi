@@ -9,6 +9,9 @@
 		<h2>Editar Profesor</h2>
 		<form class="form-horizontal" method="post"
 			th:action="${'/professor/edit'}">
+			<input th:value="${professor.id}" type="hidden"
+				class="form-control" name="id"
+				placeholder="id" required="true" />
 			<input th:value="${professor.dni}" type="hidden"
 				class="form-control" name="dni"
 				placeholder="dni" required="true" />
