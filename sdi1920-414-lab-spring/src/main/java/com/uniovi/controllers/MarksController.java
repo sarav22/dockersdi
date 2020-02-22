@@ -1,5 +1,7 @@
 package com.uniovi.controllers;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -18,9 +20,12 @@ import com.uniovi.validators.AddMarkValidator;
 @Controller
 public class MarksController {
 
+	@Autowired
+	private HttpSession httpSession;
+
 	@Autowired // Inyectar el servicio
 	private MarksService marksService;
-	
+
 	@Autowired
 	private AddMarkValidator markValidator;
 
@@ -35,8 +40,8 @@ public class MarksController {
 
 	@RequestMapping(value = "/mark/add", method = RequestMethod.POST)
 	public String setMark(@Validated Mark mark, BindingResult result) {
-		markValidator.validate(mark,result);
-		if(result.hasErrors()) {
+		markValidator.validate(mark, result);
+		if (result.hasErrors()) {
 			return "mark/add";
 		}
 		marksService.addMark(mark);
