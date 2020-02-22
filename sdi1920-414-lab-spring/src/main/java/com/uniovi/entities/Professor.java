@@ -71,5 +71,4 @@ public class Professor {
 		this.category = category;
 	}
 
-	
 }
