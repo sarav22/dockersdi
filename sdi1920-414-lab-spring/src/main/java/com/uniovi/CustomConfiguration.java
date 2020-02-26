@@ -3,6 +3,7 @@ package com.uniovi;
 import java.util.List;
 import java.util.Locale;
 
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.data.domain.PageRequest;
@@ -35,10 +36,13 @@ public class CustomConfiguration implements WebMvcConfigurer {
 		registry.addInterceptor(localeChangeInterceptor());
 	}
 
+	@Value("${spring.data.web.pageable.page-parameter}")
+	int page;
+	@Value("${spring.data.web.pageable.default-page-size}")
+	int size;
+	
 	@Override
 	public void addArgumentResolvers(List<HandlerMethodArgumentResolver> argumentResolvers) {
-		int page = 0;
-		int size = 5;
 		PageableHandlerMethodArgumentResolver resolver = new PageableHandlerMethodArgumentResolver();
 		resolver.setFallbackPageable(PageRequest.of(page, size));
 		argumentResolvers.add(resolver);
