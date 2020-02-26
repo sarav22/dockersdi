@@ -22,9 +22,7 @@
 			/*]]>*/
 		</script>
 		<div class="table-responsive">
-			
-			
-		<table th:replace="fragments/tableMarks" />
+		<table th:replace="fragments/table" th:fragment="tableMarks" id="tableMarks"/>
 		</div>
 		<footer th:replace="fragments/pagination" />
 	</div>

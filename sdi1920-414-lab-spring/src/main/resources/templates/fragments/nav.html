@@ -12,7 +12,7 @@
 		<div class="collapse navbar-collapse" id="myNavbar">
 			<ul class="nav navbar-nav" sec:authorize="isAuthenticated()">
 				>
-				<li><a href="/">Home</a></li>
+				<li><a href="/home">Home</a></li>
 				<li id="marks-menu" class="dropdown"><a class="dropdown-toggle"
 					data-toggle="dropdown" href="#" th:text="#{managemarks.message}">Gestión
 						de notas <span class="caret"></span>
@@ -38,10 +38,16 @@
 								Usuarios</a>
 						<li>
 					</ul></li>
-				<li><a href="/professor/list"
+					<li id="professors-menu" class="dropdown"><a class="dropdown-toggle"
+					data-toggle="dropdown" href="#" th:text="#{manageprofessors.message}">Gestión
+						de profesores <span class="caret"></span></a>
+					<ul class="dropdown-menu">
+						<li><a href="/professor/list"
 					th:text="#{listprofessors.message}">Ver Profesores</a></li>
-				<li class="active"><a href="/professor/add"
+				<li class="active" sec:authorize="hasRole('ROLE_ADMIN')"><a href="/professor/add"
 					th:text="#{addprofessor.message}">Agregar profesor</a></li>
+					</ul></li>
+				
 			</ul>
 			<ul class="nav navbar-nav navbar-right">
 				<li class="dropdown"><a id="btnLanguage" href=" #"

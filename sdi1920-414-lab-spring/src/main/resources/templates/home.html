@@ -14,7 +14,7 @@
 		<p th:text="#{usermarks.message}">Notas del usuario</p>
 		<div class="table-responsive">
 			
-		<table th:replace="fragments/tableMarks" />
+		<table th:replace="fragments/table" th:fragment="tableMarks" id="tableMarks"/>
 		</div>
 	</div>
 	<footer th:replace="fragments/footer" />
