@@ -11,6 +11,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 
 import com.uniovi.tests.pageobjects.PO_HomeView;
+import com.uniovi.tests.pageobjects.PO_LoginView;
 import com.uniovi.tests.pageobjects.PO_Properties;
 import com.uniovi.tests.pageobjects.PO_RegisterView;
 import com.uniovi.tests.pageobjects.PO_View;
@@ -32,6 +33,7 @@ public class NotaneitorTests {
 	static WebDriver driver = getDriver(PathFirefox65, Geckdriver024);
 	static String URL = "http://localhost:8090";
 
+	
 	// PR01. Acceder a la página principal /
 	@Test
 	public void PR01() {
@@ -57,7 +59,7 @@ public class NotaneitorTests {
 	public void PR04() {
 		PO_HomeView.checkChangeIdiom(driver, "btnSpanish", "btnEnglish", PO_Properties.getSPANISH(),
 				PO_Properties.getENGLISH());
-		 SeleniumUtils.esperarSegundos(driver, 5);
+		SeleniumUtils.esperarSegundos(driver, 5);
 	}
 
 	// PR05. Prueba del formulario de registro. registro con datos correctos
@@ -67,61 +69,123 @@ public class NotaneitorTests {
 		PO_HomeView.clickOption(driver, "signup", "class", "btn btn-primary");
 		// Rellenamos el formulario.
 		PO_RegisterView.fillForm(driver, "77777778A", "Josefo", "Perez", "77777", "77777");
-	
-	// Comprobamos que entramos en la sección privada
+
+		// Comprobamos que entramos en la sección privada
 		PO_View.checkElement(driver, "text", "Notas del usuario");
 	}
-	
-	//PR06. Prueba del formulario de registro. 
-	//DNI repetido en la BD, Nombre corto, .... pagination pagination-centered, 
-	//Error.signup.dni.length 
-	@Test public void PR06() { 
-		//Vamos al formulario de registro 
-		PO_HomeView.clickOption(driver, "signup", "class", "btn btn-primary"); 
-		//Rellenamos el formulario. 
-		PO_RegisterView.fillForm(driver, "99999990A", "Josefo", "Perez", "77777", "77777"); 
-		PO_View.getP(); 
-		//COmprobamos el error de DNI repetido. 
-		PO_RegisterView.checkKey(driver, "Error.signup.dni.duplicate", PO_Properties.getSPANISH() ); 
-		//Rellenamos el formulario. 
-		PO_RegisterView.fillForm(driver, "99999990B", "Jose", "Perez", "77777", "77777"); 
-		//COmprobamos el error de Nombre corto . 
-		PO_RegisterView.checkKey(driver, "Error.signup.name.length", PO_Properties.getSPANISH() ); 
-		//Rellenamos el formulario. 
+
+	// PR06. Prueba del formulario de registro.
+	// DNI repetido en la BD, Nombre corto, .... pagination pagination-centered,
+	// Error.signup.dni.length
+	@Test
+	public void PR06() {
+		// Vamos al formulario de registro
+		PO_HomeView.clickOption(driver, "signup", "class", "btn btn-primary");
+		// Rellenamos el formulario.
+		PO_RegisterView.fillForm(driver, "99999990A", "Josefo", "Perez", "77777", "77777");
+		PO_View.getP();
+		// COmprobamos el error de DNI repetido.
+		PO_RegisterView.checkKey(driver, "Error.signup.dni.duplicate", PO_Properties.getSPANISH());
+		// Rellenamos el formulario.
+		PO_RegisterView.fillForm(driver, "99999990B", "Jose", "Perez", "77777", "77777");
+		// COmprobamos el error de Nombre corto .
+		PO_RegisterView.checkKey(driver, "Error.signup.name.length", PO_Properties.getSPANISH());
+		// Rellenamos el formulario.
 		PO_RegisterView.fillForm(driver, "99999990B", "Josefo", "Per", "77777", "77777");
-		//COmprobamos el error de apellido corto . 
-		PO_RegisterView.checkKey(driver, "Error.signup.lastName.length", PO_Properties.getSPANISH() ); 
-		//Rellenamos el formulario. 
-		PO_RegisterView.fillForm(driver, "99999990B", "JoseJoseJoseJoseJoseJoseJose", "Perez", "77777", "77777"); 
-		//COmprobamos el error de Nombre largo . 
-		PO_RegisterView.checkKey(driver, "Error.signup.name.length", PO_Properties.getSPANISH() ); 
-		//Rellenamos el formulario. 
+		// COmprobamos el error de apellido corto .
+		PO_RegisterView.checkKey(driver, "Error.signup.lastName.length", PO_Properties.getSPANISH());
+		// Rellenamos el formulario.
+		PO_RegisterView.fillForm(driver, "99999990B", "JoseJoseJoseJoseJoseJoseJose", "Perez", "77777", "77777");
+		// COmprobamos el error de Nombre largo .
+		PO_RegisterView.checkKey(driver, "Error.signup.name.length", PO_Properties.getSPANISH());
+		// Rellenamos el formulario.
 		PO_RegisterView.fillForm(driver, "99999990B", "Josefo", "PerezPerezPerezPerezPerezPerez", "77777", "77777");
-		//COmprobamos el error de apellido largo .
-		PO_RegisterView.checkKey(driver, "Error.signup.lastName.length", PO_Properties.getSPANISH() ); 
-		//Rellenamos el formulario. 
+		// COmprobamos el error de apellido largo .
+		PO_RegisterView.checkKey(driver, "Error.signup.lastName.length", PO_Properties.getSPANISH());
+		// Rellenamos el formulario.
 		PO_RegisterView.fillForm(driver, "99999990B", "Josefo", "Perez", "77777", "11111");
-		//COmprobamos el error de contraseñas coincidentes .
-		PO_RegisterView.checkKey(driver, "Error.signup.passwordConfirm.coincidence", PO_Properties.getSPANISH() ); 
-		//Rellenamos el formulario. 
+		// COmprobamos el error de contraseñas coincidentes .
+		PO_RegisterView.checkKey(driver, "Error.signup.passwordConfirm.coincidence", PO_Properties.getSPANISH());
+		// Rellenamos el formulario.
 		PO_RegisterView.fillForm(driver, "99999990B", "Josefo", "Perez", "7777", "7777");
-		//COmprobamos el error de contraseñas cortas .
-		PO_RegisterView.checkKey(driver, "Error.signup.password.length", PO_Properties.getSPANISH() ); 
-		//Rellenamos el formulario. 
-		PO_RegisterView.fillForm(driver, "99999990B", "Josefo", "Perez", "111112222233333444445555566666", "111112222233333444445555566666");
-		//COmprobamos el error de contraseñas largas .
-		PO_RegisterView.checkKey(driver, "Error.signup.password.length", PO_Properties.getSPANISH() ); 
-		//Rellenamos el formulario. 
+		// COmprobamos el error de contraseñas cortas .
+		PO_RegisterView.checkKey(driver, "Error.signup.password.length", PO_Properties.getSPANISH());
+		// Rellenamos el formulario.
+		PO_RegisterView.fillForm(driver, "99999990B", "Josefo", "Perez", "111112222233333444445555566666",
+				"111112222233333444445555566666");
+		// COmprobamos el error de contraseñas largas .
+		PO_RegisterView.checkKey(driver, "Error.signup.password.length", PO_Properties.getSPANISH());
+		// Rellenamos el formulario.
 		PO_RegisterView.fillForm(driver, "9999asdasdsa9992341234234234230B", "Josefo", "Perez", "77777", "77777");
-		//COmprobamos el error de dni largo .
-		PO_RegisterView.checkKey(driver, "Error.signup.dni.length", PO_Properties.getSPANISH() ); 
-		//Rellenamos el formulario. 
+		// COmprobamos el error de dni largo .
+		PO_RegisterView.checkKey(driver, "Error.signup.dni.length", PO_Properties.getSPANISH());
+		// Rellenamos el formulario.
 		PO_RegisterView.fillForm(driver, "99A", "Josefo", "Perez", "77777", "77777");
-		//COmprobamos el error de dni corto .
-		PO_RegisterView.checkKey(driver, "Error.signup.dni.length", PO_Properties.getSPANISH() ); 
+		// COmprobamos el error de dni corto .
+		PO_RegisterView.checkKey(driver, "Error.signup.dni.length", PO_Properties.getSPANISH());
 
+	}
+
+	// PR07. Loguearse con exito desde el ROl de Usuario, 99999990A, 123456 
+	@Test
+	public void PR07() { 
+		//Vamos al formulario de logueo.
+		PO_HomeView.clickOption(driver, "login", "class", "btn btn-primary");
+		//Rellenamos el formulario 
+		PO_LoginView.fillForm(driver, "99999990A" ,"123456" ); 
+		//COmprobamos que entramos en la pagina privada de Alumno
+		PO_View.checkElement(driver, "text", "Notas del usuario"); 
+	
+	}
+	
+	//PR08: Identificación válida con usuario de ROL profesor ( 99999993D/123456). 
+	@Test
+	public void PR08() { 
+		//Vamos al formulario de logueo.
+		PO_HomeView.clickOption(driver, "login", "class", "btn btn-primary");
+		//Rellenamos el formulario 
+		PO_LoginView.fillForm(driver, "99999993D" ,"123456" ); 
 		
+		PO_View.checkElement(driver, "text", "99999993D"); 
+	
+	}
+	
+	//PR09: Identificación válida con usuario de ROL Administrador ( 99999988F/123456). 
+	@Test
+	public void PR09() { 
+		//Vamos al formulario de logueo.
+		PO_HomeView.clickOption(driver, "login", "class", "btn btn-primary");
+		//Rellenamos el formulario 
+		PO_LoginView.fillForm(driver, "99999988F" ,"123456" ); 
+		
+		PO_View.checkElement(driver, "text", "99999988F"); 
+	
+	}
+	
+	
+	//PR10: Identificación inválida con usuario de ROL alumno ( 99999990A/123456).
+	@Test
+	public void PR10() { 
+		//Vamos al formulario de logueo.
+		PO_HomeView.clickOption(driver, "login", "class", "btn btn-primary");
+		//Rellenamos el formulario 
+		PO_LoginView.fillForm(driver, "99999990A" ,"1256" ); 
+		
+		PO_View.checkElement(driver, "text", "Login"); 
+	
+	}
+	//PR11: Identificación válida y desconexión con usuario de ROL usuario ( 99999990A/123456)..
+	@Test
+	public void PR11() { 
+		//Vamos al formulario de logueo.
+		PO_HomeView.clickOption(driver, "login", "class", "btn btn-primary");
+		//Rellenamos el formulario 
+		PO_LoginView.fillForm(driver, "99999990A" ,"123456" ); 
+		
+		PO_View.checkElement(driver, "text", "Notas del usuario"); 
 
+		PO_HomeView.clickOption(driver, "logout", "class", "btn btn-primary");
+	
 	}
 
 	public static WebDriver getDriver(String PathFirefox, String Geckdriver) {
